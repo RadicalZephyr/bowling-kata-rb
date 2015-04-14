@@ -43,10 +43,10 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(rspec.spec_helper) { rspec.spec_dir }
   watch(rspec.spec_support) { rspec.spec_dir }
   watch(rspec.spec_files)
-  watch(%r{^lib/(.+)\.rb$}) { |m| "spec/#{m[1]}_spec.rb" }
 
   # Ruby files
   ruby = dsl.ruby
+  watch(ruby.lib_files) { rspec.spec_dir }
   dsl.watch_spec_files_for(ruby.lib_files)
 
   # Turnip features and steps
